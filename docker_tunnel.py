@@ -8,6 +8,10 @@ import distutils.spawn
 import click
 
 
+__version__ = '0.1.0.dev'
+__all__ = ['local_forward_tunnel', 'main']
+
+
 @contextlib.contextmanager
 def local_forward_tunnel(local_addr, remote_addr, hostname):
     cmd = distutils.spawn.find_executable('ssh') or '/usr/bin/ssh'
