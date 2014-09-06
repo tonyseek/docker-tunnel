@@ -88,6 +88,12 @@ Troubleshooting
   Does the docker server listen on ``127.0.0.1:2375``? You may have to set correct server info with ``--remote-host`` and ``--remote-port``.
 
 
+Known Bugs
+----------
+
+- The ssh tunnel can be authenticated with public key only. The password prompt will caused a crash.
+
+
 Issues
 ------
 
