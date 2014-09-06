@@ -8,26 +8,31 @@ import distutils.spawn
 import click
 
 
+__version__ = '0.1.0'
+__all__ = ['local_forward_tunnel', 'main']
+
+
 @contextlib.contextmanager
 def local_forward_tunnel(local_addr, remote_addr, hostname):
     cmd = distutils.spawn.find_executable('ssh') or '/usr/bin/ssh'
     forward_string = '%s:%d:%s:%d' % (local_addr + remote_addr)
     proc = subprocess.Popen(
-        [cmd, '-f', '-N', '-L', forward_string, hostname],
+        [cmd, '-N', '-L', forward_string, hostname],
         stdin=subprocess.DEVNULL,
         stdout=subprocess.DEVNULL)
-    yield
-    proc.kill()
-    proc.wait()
+    try:
+        yield
+    finally:
+        proc.kill()
+        proc.wait()
 
 
 def shell(local_addr, hostname):
     cmd = os.environ.get('SHELL', '/bin/sh')
-    env = {
-        'DOCKER_HOST': 'tcp://%s:%d' % local_addr,
-        'DOCKER_PROMPT_INFO': hostname,
-    }
-    proc = subprocess.Popen([cmd], env=env, bufsize=0)
+    env = dict(os.environ)
+    env['DOCKER_HOST'] = 'tcp://%s:%d' % local_addr
+    env['DOCKER_PROMPT_INFO'] = hostname
+    proc = subprocess.Popen([cmd, '--login'], env=env)
     proc.wait()
 
 
