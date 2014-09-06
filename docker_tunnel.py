@@ -20,9 +20,11 @@ def local_forward_tunnel(local_addr, remote_addr, hostname):
         [cmd, '-N', '-L', forward_string, hostname],
         stdin=subprocess.DEVNULL,
         stdout=subprocess.DEVNULL)
-    yield
-    proc.kill()
-    proc.wait()
+    try:
+        yield
+    finally:
+        proc.kill()
+        proc.wait()
 
 
 def shell(local_addr, hostname):
