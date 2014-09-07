@@ -12,14 +12,21 @@ __version__ = '0.1.2'
 __all__ = ['local_forward_tunnel', 'main']
 
 
+def devnull(mode):
+    if hasattr(subprocess, 'DEVNULL'):
+        return subprocess.DEVNULL
+    else:
+        return open(os.devnull, mode)
+
+
 @contextlib.contextmanager
 def local_forward_tunnel(local_addr, remote_addr, hostname):
     cmd = distutils.spawn.find_executable('ssh') or '/usr/bin/ssh'
     forward_string = '%s:%d:%s:%d' % (local_addr + remote_addr)
     proc = subprocess.Popen(
         [cmd, '-N', '-L', forward_string, hostname],
-        stdin=subprocess.DEVNULL,
-        stdout=subprocess.DEVNULL)
+        stdin=devnull(mode='r'),
+        stdout=devnull(mode='w'))
     try:
         yield
     finally:
