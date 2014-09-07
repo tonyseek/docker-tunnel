@@ -8,7 +8,7 @@ with open('README.rst') as readme:
 
 setup(
     name='docker-tunnel',
-    version='0.1.0',
+    version='0.1.1',
     author='Jiangge Zhang',
     author_email='tonyseek@gmail.com',
     description='Using remote docker with SSH tunnel.',
