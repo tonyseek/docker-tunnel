@@ -3,12 +3,12 @@ from setuptools import setup
 
 with open('README.rst') as readme:
     next(readme)  # skip the first line
-    long_description = readme.read().strip()
+    long_description = ''.join(readme).strip()
 
 
 setup(
     name='docker-tunnel',
-    version='0.1.0',
+    version='0.1.1',
     author='Jiangge Zhang',
     author_email='tonyseek@gmail.com',
     description='Using remote docker with SSH tunnel.',
@@ -18,8 +18,9 @@ setup(
     license='MIT',
     py_modules=['docker_tunnel'],
     entry_points={
-        'console_script': 'docker-tunnel = docker_tunnel:main',
+        'console_scripts': 'docker-tunnel = docker_tunnel:main',
     },
+    install_requires=['click'],
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Environment :: Console',
