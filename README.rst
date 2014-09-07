@@ -1,4 +1,4 @@
-|PyPI Version| |PyPI Downloads| |Wheel Status|
+|Build Status| |PyPI Version| |PyPI Downloads| |Wheel Status|
 
 docker-tunnel
 =============
@@ -104,6 +104,9 @@ If you want to report bugs or request features, please create issues on
 .. _pipsi: https://github.com/mitsuhiko/pipsi
 .. _`my custom theme`: https://github.com/tonyseek/oh-my-zsh-seeker-theme
 
+.. |Build Status| image:: https://travis-ci.org/tonyseek/docker-tunnel.svg?branch=master,develop
+   :target: https://travis-ci.org/tonyseek/docker-tunnel
+   :alt: Build Status
 .. |Wheel Status| image:: https://pypip.in/wheel/docker-tunnel/badge.svg
    :target: https://warehouse.python.org/project/docker-tunnel
    :alt: Wheel Status
