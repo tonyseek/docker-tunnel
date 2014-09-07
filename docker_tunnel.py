@@ -8,7 +8,7 @@ import distutils.spawn
 import click
 
 
-__version__ = '0.1.1'
+__version__ = '0.1.2'
 __all__ = ['local_forward_tunnel', 'main']
 
 
